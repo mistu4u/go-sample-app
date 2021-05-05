@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: cf
+      POSTGRES_USER: cf
+      POSTGRES_PASSWORD: cf
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+    - 5432:5432
+    expose:
+      - 5432
+    volumes:
+      - ./init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+      - ff_data:/var/lib/postgresql/data
+  migration:
+    build:
+      context: ../db
+      dockerfile: ./Dockerfile
+    env_file:
+      - ../docker.env
+    depends_on:
+      - db
+volumes:
+  ff_data:
+    driver: local
+  ff_analytics_data:
+    driver: local
