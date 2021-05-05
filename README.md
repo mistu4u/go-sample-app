@@ -67,5 +67,5 @@ so code-first approach works here.
 4) Authentication/authorization mechanism; if the client of this API is another application,
 API Key would be sufficient. If it is a user, implementation of authentication token is needed.
 
-5) Since speed was mentioned, I would have used some sort of cache, preferably Redis cache with db
+5) I would have used some sort of cache, preferably Redis cache with db
 queries to make the system even faster. However, without a db, I think the speed is optimal at this point.
